@@ -80,13 +80,7 @@ We then have the required url, namely
 
 `http://www.bing.com/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
 
-and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command
-
-```
-curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*.jpg&pid=hp" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
-```
-
-&nbsp;
+and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command shown above.
 
 To use this one-liner CLI command in AppleScript, it is necessary to escape some characters (namely the `"`'s and `\`'s). The following is an AppleScript that sends this one-liner CLI command to `Terminal.app`:
 ```
@@ -177,13 +171,15 @@ tell application "Terminal"
 end tell
 ```
 
-then sends the one-liner CLI command to `Terminal.app`, where the command
+then sends the one-liner CLI command to `Terminal.app`, where the (suitably escaped for AppleScript) command
 
 ```
 echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\"
 ```
 
-just pulls out the market code from the `market_code` variable; for example, the command
+just pulls out the market code from the `market_code` variable.
+
+For example, the CLI command
 
 ```
 echo ja-JP, Japan, Japanese | grep --extended-regexp --only-matching "[a-z]{2}-[A-Z]{2}"
