@@ -6,7 +6,7 @@ This AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and 
 
 ## Background Information
 
-Using the Japanese market code `ja-JP` as an example, the Bing image of the day for the can be found using the `url`
+Using the Japanese market code `ja-JP` as an example, the direct download link for the Bing image of the day can be found using the `url`
 
 `http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP`
 
@@ -48,7 +48,7 @@ The next part, namely
 
 `grep --only-matching "\"url\":\"\/.*.jpg&pid=hp"`
 
-then pulls out the `url` location, so that the command
+then pulls out the `url` location from the previous output, so that the command
 
 ```
 curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*.jpg&pid=hp"
@@ -64,7 +64,7 @@ The next part, namely
 
 `sed 's/"url":"\///g'`
 
-then removes the `"url":"/` bit, so that the command
+then removes the `"url":"/` part of the previous output, so that the command
 
 ```
 curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*.jpg&pid=hp" | sed 's/"url":"\///g'
@@ -76,7 +76,7 @@ outputs
 
 ### Step 4
 
-We then have the required url, namely
+We then have the required direct download link, namely
 
 `http://www.bing.com/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
 
@@ -89,7 +89,7 @@ tell application "Terminal"
 end tell
 ```
 
-## The full AppleScript
+## The Full AppleScript
 
 ```
 set market_code_choices to {"da-DK, Denmark, Danish", "de-AT, Austria, German", "de-CH, Switzerland, German", "de-DE, Germany, German", "en-AU, Australia, English", "en-CA, Canada, English", "en-GB, United Kingdom, English", "en-ID, Indonesia, English", "en-IN, India, English", "en-MY, Malaysia, English", "en-NZ, New Zealand, English", "en-PH, Republic of the Philippines, English", "en-US, United States, English", "en-ZA, South Africa, English", "es-AR, Argentina, Spanish", "es-CL, Chile, Spanish", "es-ES, Spain, Spanish", "es-MX, Mexico, Spanish", "es-US, United States, Spanish", "fi-FI, Finland, Finnish", "fr-BE, Belgium, French", "fr-CA, Canada, French", "fr-CH, Switzerland, French", "fr-FR, France, French", "it-IT, Italy, Italian", "ja-JP, Japan, Japanese", "ko-KR, Korea, Korean", "nl-BE, Belgium, Dutch", "nl-NL, Netherlands, Dutch", "no-NO, Norway, Norwegian", "pl-PL, Poland, Polish", "pt-BR, Brazil, Portuguese", "ru-RU, Russia, Russian", "sv-SE, Sweden, Swedish", "tr-TR, Turkey, Turkish", "zh-CN, Peoples Republic of China, Chinese", "zh-HK, Hong Kong SAR, Traditional Chinese", "zh-TW, Taiwan, Traditional Chinese"}
