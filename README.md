@@ -2,7 +2,7 @@
 
 This AppleScript fetches the Bing image of the day using any valid market code and sets it as your desktop wallpaper.
 
-This AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and run from the Menu Bar.
+The AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and run from the Menu Bar.
 
 ## Background Information
 
@@ -13,15 +13,15 @@ Using the Japanese market code `ja-JP` as an example, the direct download link f
 where:
 
 * `format` can take the values `js` (short for `json`), `xml` and `rss`;
-* `idx` is the number days previous the present day, with `0` meaning the current day;
+* `idx` is the number days previous to the present day, with `0` meaning the present day;
 * `n` is the number of images to fetch previous to the day given by `idx`, with `1` meaning fetch the one image for day `idx`; and
-* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes). At present, only the market codes `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `ja-JP` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
+* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes), and at present only the market codes `de-DE`, `en-AU`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `ja-JP` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
 
 ## Details
 
 The AppleScript basically works by first downloading the Bing image of the day and saving it to `~/Downloads/bing_image_of_the_day.jpg`, then setting this image as the desktop wallpaper.
 
-Again using the Japanese market code `ja-JP` as an example, the Bing image of the day is downloaded with the following one-liner CLI command
+Again using the Japanese market code `ja-JP` as an example, the Bing image of the day can be downloaded with the following one-liner CLI command
 ```
 curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*.jpg&pid=hp" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
 ```
@@ -111,7 +111,7 @@ set market_code to choose from list market_code_choices with prompt "Market code
 if market_code is false then return
 ```
 
-opens up a list of market codes for selection:
+opens up a list of valid market codes for selection:
 
 <p align="center">
 <img width="500" alt="Screen Shot 2021-11-12 at 23 11 59" src="https://user-images.githubusercontent.com/6127163/141489460-d1d774b5-e71e-41e3-bdf2-0b758796e911.png">
@@ -119,7 +119,7 @@ opens up a list of market codes for selection:
 
 and selecting `Cancel` exits the AppleScript.
 
-For the above example, the variable `market_code` is then set to `ja-JP, Japan, Japanese`.
+For the above example, the market code `ja-JP` is selected and the variable `market_code` is then set to `ja-JP, Japan, Japanese`.
 
 ### Step 2
 
