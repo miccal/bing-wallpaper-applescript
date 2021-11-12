@@ -1,4 +1,4 @@
-# Bing Image of the Day
+# Set The Bing Image Of The Day As Your Desktop Wallpaper
 
 This AppleScript fetches the Bing image of the day using any valid market code and sets it as your desktop wallpaper.
 
