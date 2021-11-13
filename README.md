@@ -185,13 +185,13 @@ In the `Shortcuts.app`, create a new Shortcut
 <img width="200" alt="Screen Shot 2021-11-12 at 23 32 08" src="https://user-images.githubusercontent.com/6127163/141492985-18725826-7081-448d-ae2d-3d45fe127e37.png">
 </p>
 
-that performs a `Run AppleScript` action
+that performs a `Run AppleScript` action with the above AppleScript code
 
 <p align="center">
 <img width="800" alt="Screen Shot 2021-11-12 at 23 32 47" src="https://user-images.githubusercontent.com/6127163/141493216-f8233ca0-5825-42f9-a70a-284839c6759e.png">
 </p>
 
-that may then be run from the Manu Bar
+that may then be run from the Menu Bar
 
 <p align="center">
 <img width="500" alt="Screen Shot 2021-11-12 at 23 32 55" src="https://user-images.githubusercontent.com/6127163/141493274-393e6b87-4d0b-4d25-b4f6-27a254cc24ad.png">
