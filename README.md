@@ -92,7 +92,7 @@ end tell
 ## The Full AppleScript
 
 <p align="center">
-<img width="1000" alt="Screen Shot 2021-11-13 at 02 08 56" src="https://user-images.githubusercontent.com/6127163/141514626-21904a59-68c7-4a68-bb80-77fdefa299c2.png">
+<img width="1000" alt="Screen Shot 2021-11-14 at 10 57 01" src="https://user-images.githubusercontent.com/6127163/141665849-323aaac7-cb2b-4632-b470-aa30f725de29.png">
 </p>
 
 &nbsp;
@@ -165,7 +165,7 @@ simply outputs
 
 ### Step 4
 
-The final part of the AppleScript
+The next part of the AppleScript
 
 ```
 tell application "System Events"
@@ -176,6 +176,28 @@ end tell
 ```
 
 then sets the downloaded image `~/Downloads/bing_image_of_the_day.jpg` as the desktop wallpaper.
+
+### Step 5
+
+The final part of the AppleScript
+
+```
+tell application "Terminal"
+	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR.//g' | sed 's/.jpg.*//g'" in front window
+end tell
+```
+
+provides a simple check of the file name, market code and image resolution obtained by the one-liner CLI command.
+
+For example, the CLI command
+
+```
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*.jpg&pid=hp" | sed 's/"url":"\/th?id=OHR.//g' | sed 's/.jpg.*//g'
+```
+
+simply outputs
+
+`BeaversBend_JA-JP2539821984_1920x1080`
 
 ## Adding the AppleScript to the `Shortcuts.app`
 
