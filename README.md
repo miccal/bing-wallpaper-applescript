@@ -51,7 +51,7 @@ The next part, namely
 then pulls out the `url` location from the previous output, so that the command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp""
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp"
 ```
 
 outputs
