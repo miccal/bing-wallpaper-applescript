@@ -25,3 +25,9 @@ tell application "System Events"
 		set picture to "~/Downloads/bing_image_of_the_day.jpg"
 	end tell
 end tell
+
+delay 3
+
+tell application "Terminal"
+	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR.//g' | sed 's/.jpg.*//g'" in front window
+end tell
