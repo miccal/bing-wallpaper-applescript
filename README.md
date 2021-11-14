@@ -1,6 +1,6 @@
 # Set The Bing Image Of The Day As Your Desktop Wallpaper
 
-This AppleScript fetches the Bing image of the day using any valid market code and sets it as your desktop wallpaper.
+This AppleScript fetches the Bing image of the day using any choice of a valid market code and sets it as your desktop wallpaper.
 
 The AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and run from the Menu Bar.
 
