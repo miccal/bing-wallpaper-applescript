@@ -147,9 +147,7 @@ end tell
 
 then sends the one-liner CLI command to `Terminal.app`, where the (suitably escaped for AppleScript) command
 
-```
-echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\"
-```
+`echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\"`
 
 just pulls out the market code from the `market_code` variable.
 
