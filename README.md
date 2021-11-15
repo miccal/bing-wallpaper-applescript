@@ -74,13 +74,25 @@ outputs
 
 `th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
 
+Note that the size of the obtained image is set to 1920x1080 pixels at a DPI (dots per inch) of 72 pixels/inch, which is actually the second-highest size available. The highest size available is in fact 1920x1200 pixels at a DPI of 96 pixels/inch, but at this resolution the image comes with a "Microsoft Bing" logo embedded in the lower-right corner, as illustrated below:
+
+<p align="center">
+<img width="1000" alt="th" src="https://user-images.githubusercontent.com/6127163/141806759-33053c9d-5964-40eb-a30c-e94f060ffa5d.jpeg">
+</p>
+
+I certainly do not want to see the name of this terrible corporation on my desktop every day, so I am content with the lower-resolution image.
+
 ### Step 4
 
 We then have the required direct download link, namely
 
 `http://www.bing.com/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
 
-and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command shown above.
+and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command shown above, and the resultant image is illustrated below:
+
+<p align="center">
+<img width="2000" alt="th-1" src="https://user-images.githubusercontent.com/6127163/141807789-2c0c0cb9-dc09-4961-89da-45a06be649a2.jpeg">
+</p>
 
 To use this one-liner CLI command in AppleScript, it is necessary to escape some characters (namely the `"`'s and `\`'s). The following is an AppleScript that sends this one-liner CLI command to `Terminal.app`:
 ```
@@ -92,7 +104,7 @@ end tell
 ## The Full AppleScript
 
 <p align="center">
-<img width="1000" alt="Screen Shot 2021-11-14 at 11 42 11" src="https://user-images.githubusercontent.com/6127163/141666717-013a5c15-72f3-4e6d-a7a2-8c983900e13e.png">
+<img width="2000" alt="Screen Shot 2021-11-14 at 11 42 11" src="https://user-images.githubusercontent.com/6127163/141666717-013a5c15-72f3-4e6d-a7a2-8c983900e13e.png">
 </p>
 
 &nbsp;
