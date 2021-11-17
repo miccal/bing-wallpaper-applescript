@@ -4,8 +4,6 @@ This AppleScript fetches the Bing image of the day using any choice of a valid m
 
 The AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and run from the Menu Bar.
 
-## Background Information
-
 Using the Japanese market code `ja-JP` as an example, the direct download link for the Bing image of the day can be found using the `url`
 
 `http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP`
@@ -92,6 +90,12 @@ and the last step is to download the image and save it as `~/Downloads/bing_imag
 
 <p align="center">
 <img width="2000" alt="th-1" src="https://user-images.githubusercontent.com/6127163/141807789-2c0c0cb9-dc09-4961-89da-45a06be649a2.jpeg">
+</p>
+
+Note that the `&rf=LaDigue_1920x1080.jpg` part of the direct download link is a "fallback" image if the actual image `BeaversBend_JA-JP2539821984_1920x1080.jpg` is not available. So if the downloaded image is the one illustrated below, something is wrong!
+
+<p align="center">
+<img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142172273-5d6fb61c-afaa-4c00-a8a8-ca23c0c8f525.jpg">
 </p>
 
 To use this one-liner CLI command in AppleScript, it is necessary to escape some characters (namely the `"`'s and `\`'s). The following is an AppleScript that sends this one-liner CLI command to `Terminal.app`:
