@@ -85,7 +85,7 @@ and the last step is to download the image and save it as `~/Downloads/bing_imag
 <img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142700725-3012529d-2535-42be-bd19-78fe774a2e15.jpeg">
 </p>
 
-Note that the `&rf=LaDigue_UHD.jpg` part of the direct download link is a "fallback" image if the actual image `BeaversBend_JA-JP2539821984_1920x1080.jpg` is not available. So if the downloaded image is the one illustrated below, something is wrong!
+Note that the `&rf=LaDigue_UHD.jpg` part of the direct download link is a "fallback" image if the actual image `NewBreath_JA-JP6333010021_UHD.jpg` is not available. So if the downloaded image is the one illustrated below, something is wrong!
 
 <p align="center">
 <img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142700897-71e19683-b2e5-4e06-8083-56f332d0716a.png">
