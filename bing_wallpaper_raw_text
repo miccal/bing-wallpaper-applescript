@@ -4,7 +4,7 @@ set market_code to choose from list market_code_choices with prompt "Market code
 
 if market_code is false then return
 
-delay 3
+delay 1
 
 tell application "System Events"
 	tell every desktop
@@ -12,13 +12,13 @@ tell application "System Events"
 	end tell
 end tell
 
-delay 3
+delay 1
 
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
+	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
 end tell
 
-delay 3
+delay 10
 
 tell application "System Events"
 	tell every desktop
@@ -26,8 +26,8 @@ tell application "System Events"
 	end tell
 end tell
 
-delay 3
+delay 1
 
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
+	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
 end tell
