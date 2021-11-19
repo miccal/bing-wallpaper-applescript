@@ -6,11 +6,12 @@ The AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and r
 
 Using the Japanese market code `ja-JP` as an example, the direct download link for the Bing image of the day can be found using the `url`
 
-`http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP`
+`http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP`
 
 where:
 
 * `format` can take the values `js` (short for `json`), `xml` and `rss`;
+* `uhd` can take the values `0` and `1`, with `0` meaning fetch the standard version (normally 1920x1080) and `1` meaning the ultra high definition version; 
 * `idx` is the number days previous to the present day, with `0` meaning the present day;
 * `n` is the number of images to fetch previous to the day given by `idx`, with `1` meaning fetch the one image for day `idx`; and
 * `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes), and at present (Novermber 2021) only the market codes `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `fr-CA`, `fr-FR`, `ja-JP` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
@@ -21,7 +22,7 @@ The AppleScript basically works by first downloading the Bing image of the day a
 
 Again using the Japanese market code `ja-JP` as an example, the Bing image of the day can be downloaded with the following one-liner CLI command
 ```
-curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
+curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
 ```
 
 &nbsp;
@@ -33,12 +34,12 @@ Let's unpack what this one-liner CLI command does ...
 The command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP"
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP"
 ```
 
 outputs the information for the current image of the day, like so:
 
-`{"images":[{"startdate":"20211110","fullstartdate":"202111101500","enddate":"20211111","url":"/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp","urlbase":"/th?id=OHR.BeaversBend_JA-JP2539821984","copyright":"ビーバーズ・ベンド・リゾートパーク, 米国 オクラホマ州 （© Inge Johnsson/Alamy Stock Photo）","copyrightlink":"https://www.bing.com/search?q=%E3%83%93%E3%83%BC%E3%83%90%E3%83%BC%E3%82%BA%E3%83%BB%E3%83%99%E3%83%B3%E3%83%89%E3%83%BB%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88%E3%83%91%E3%83%BC%E3%82%AF&form=hpcapt&filters=HpDate%3a%2220211110_1500%22","title":"ブロークン・ボウ湖の紅葉","quiz":"/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20211110_BeaversBend%22&FORM=HPQUIZ","wp":true,"hsh":"be331c8a5be95ef8d4585717b1e70865","drk":1,"top":1,"bot":1,"hs":[]}],"tooltips":{"loading":"読み込み中...","previous":"前の画像へ","next":"次の画像へ","walle":"この画像を壁紙としてダウンロードすることはできません。","walls":"この画像をダウンロードできます。画像の用途は壁紙に限定されています。"}}`
+`{"images":[{"startdate":"20211119","fullstartdate":"202111191500","enddate":"20211120","url":"/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp&w=1920&h=1080&rs=1&c=4","urlbase":"/th?id=OHR.NewBreath_JA-JP6333010021","copyright":"[新たな息吹]サイープ, スイス （© Valentin Flauraud/Shutterstock）","copyrightlink":"https://www.bing.com/search?q=%E3%83%A2%E3%83%AC%E3%82%BE%E3%83%B3%E5%B1%B1&form=hpcapt&filters=HpDate%3a%2220211119_1500%22","title":"「世界子どもの日」を祝おう","quiz":"/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20211119_NewBreath%22&FORM=HPQUIZ","wp":false,"hsh":"80cf5510c7e7eb6f5a9a59adc2029d43","drk":1,"top":1,"bot":1,"hs":[]}],"tooltips":{"loading":"読み込み中...","previous":"前の画像へ","next":"次の画像へ","walle":"この画像を壁紙としてダウンロードすることはできません。","walls":"この画像をダウンロードできます。画像の用途は壁紙に限定されています。"}}`
 
 ### Step 2
 
@@ -49,12 +50,12 @@ The next part, namely
 then pulls out the `url` location from the previous output, so that the command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp"
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp"
 ```
 
 outputs
 
-`"url":"/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
+`"url":"/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
 
 ### Step 3
 
@@ -65,50 +66,42 @@ The next part, namely
 then removes the `"url":"/` part of the previous output, so that the command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g'
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g'
 ```
 
 outputs
 
-`th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
-
-Note that the size of the obtained image is set to 1920x1080 pixels at a DPI (dots per inch) of 72 pixels/inch, which is actually the second-highest size available. The highest size available is in fact 1920x1200 pixels at a DPI of 96 pixels/inch, but at this resolution the image comes with a "Microsoft Bing" logo embedded in the lower-right corner, as illustrated below:
-
-<p align="center">
-<img width="1000" alt="th" src="https://user-images.githubusercontent.com/6127163/141806759-33053c9d-5964-40eb-a30c-e94f060ffa5d.jpeg">
-</p>
-
-I certainly do not want to see the name of this terrible corporation on my desktop every day, so I am content with the lower-resolution image.
+`th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
 
 ### Step 4
 
 We then have the required direct download link, namely
 
-`http://www.bing.com/th?id=OHR.BeaversBend_JA-JP2539821984_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp`
+`http://www.bing.com/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
 
 and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command shown above, and the resultant image is illustrated below:
 
 <p align="center">
-<img width="2000" alt="th-1" src="https://user-images.githubusercontent.com/6127163/141807789-2c0c0cb9-dc09-4961-89da-45a06be649a2.jpeg">
+<img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142700725-3012529d-2535-42be-bd19-78fe774a2e15.jpeg">
 </p>
 
-Note that the `&rf=LaDigue_1920x1080.jpg` part of the direct download link is a "fallback" image if the actual image `BeaversBend_JA-JP2539821984_1920x1080.jpg` is not available. So if the downloaded image is the one illustrated below, something is wrong!
+Note that the `&rf=LaDigue_UHD.jpg` part of the direct download link is a "fallback" image if the actual image `BeaversBend_JA-JP2539821984_1920x1080.jpg` is not available. So if the downloaded image is the one illustrated below, something is wrong!
 
 <p align="center">
-<img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142172273-5d6fb61c-afaa-4c00-a8a8-ca23c0c8f525.jpg">
+<img width="2000" alt="th" src="https://user-images.githubusercontent.com/6127163/142700897-71e19683-b2e5-4e06-8083-56f332d0716a.png">
 </p>
 
 To use this one-liner CLI command in AppleScript, it is necessary to escape some characters (namely the `"`'s and `\`'s). The following is an AppleScript that sends this one-liner CLI command to `Terminal.app`:
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=ja-JP\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
+	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
 end tell
 ```
 
 ## The Full AppleScript
 
 <p align="center">
-<img width="2000" alt="Screen Shot 2021-11-14 at 11 42 11" src="https://user-images.githubusercontent.com/6127163/141666717-013a5c15-72f3-4e6d-a7a2-8c983900e13e.png">
+<img width="2000" alt="Screen Shot 2021-11-20 at 06 07 25" src="https://user-images.githubusercontent.com/6127163/142701009-3e0b85f5-b3e5-4652-851d-0072865fb55f.png">
 </p>
 
 &nbsp;
@@ -157,7 +150,7 @@ The next part of the AppleScript
 
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
+	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
 end tell
 ```
 
@@ -197,7 +190,7 @@ The final part of the AppleScript
 
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
+	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
 end tell
 ```
 
@@ -206,12 +199,12 @@ provides a simple check of the file name, market code and image resolution obtai
 For example, the CLI command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$(echo ja-JP, Japan, Japanese | grep --extended-regexp --only-matching "[a-z]{2}-[A-Z]{2}")" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\/th?id=OHR\.//g' | sed 's/\.jpg.*//g'
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo ja-JP, Japan, Japanese | grep --extended-regexp --only-matching "[a-z]{2}-[A-Z]{2}")" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\/th?id=OHR\.//g' | sed 's/\.jpg.*//g'
 ```
 
 simply outputs
 
-`BeaversBend_JA-JP2539821984_1920x1080`
+`NewBreath_JA-JP6333010021_UHD`
 
 ## Adding the AppleScript to the `Shortcuts.app`
 
