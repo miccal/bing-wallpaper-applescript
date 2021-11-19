@@ -47,7 +47,7 @@ The next part, namely
 
 `grep --only-matching "\"url\":\"\/.*\.jpg"`
 
-then pulls out the `url` location from the previous output, so that the command
+then pulls out relevant part of the `url` location from the previous output, so that the command
 
 ```
 curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg"
@@ -101,7 +101,7 @@ end tell
 ## The Full AppleScript
 
 <p align="center">
-<img width="2000" alt="Screen Shot 2021-11-20 at 06 07 25" src="https://user-images.githubusercontent.com/6127163/142701009-3e0b85f5-b3e5-4652-851d-0072865fb55f.png">
+<img width="2000" alt="Screen Shot 2021-11-20 at 07 17 02" src="https://user-images.githubusercontent.com/6127163/142703032-e562914c-f3d7-427b-abe4-e8b9d0c99fd0.png">
 </p>
 
 &nbsp;
