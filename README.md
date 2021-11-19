@@ -22,7 +22,7 @@ The AppleScript basically works by first downloading the Bing image of the day a
 
 Again using the Japanese market code `ja-JP` as an example, the Bing image of the day can be downloaded with the following one-liner CLI command
 ```
-curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
+curl --silent "http://www.bing.com/$(curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg" | sed 's/"url":"\///g')" > ~/Downloads/bing_image_of_the_day.jpg
 ```
 
 &nbsp;
@@ -45,17 +45,17 @@ outputs the information for the current image of the day, like so:
 
 The next part, namely
 
-`grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp"`
+`grep --only-matching "\"url\":\"\/.*\.jpg"`
 
 then pulls out the `url` location from the previous output, so that the command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp"
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg"
 ```
 
 outputs
 
-`"url":"/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
+`"url":"/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg`
 
 ### Step 3
 
@@ -66,18 +66,18 @@ The next part, namely
 then removes the `"url":"/` part of the previous output, so that the command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\///g'
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP" | grep --only-matching "\"url\":\"\/.*\.jpg" | sed 's/"url":"\///g'
 ```
 
 outputs
 
-`th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
+`th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg`
 
 ### Step 4
 
 We then have the required direct download link, namely
 
-`http://www.bing.com/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg&pid=hp`
+`http://www.bing.com/th?id=OHR.NewBreath_JA-JP6333010021_UHD.jpg&rf=LaDigue_UHD.jpg`
 
 and the last step is to download the image and save it as `~/Downloads/bing_image_of_the_day.jpg`, which is accomplished with the final one-liner CLI command shown above, and the resultant image is illustrated below:
 
@@ -94,7 +94,7 @@ Note that the `&rf=LaDigue_UHD.jpg` part of the direct download link is a "fallb
 To use this one-liner CLI command in AppleScript, it is necessary to escape some characters (namely the `"`'s and `\`'s). The following is an AppleScript that sends this one-liner CLI command to `Terminal.app`:
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
+	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=ja-JP\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
 end tell
 ```
 
@@ -150,7 +150,7 @@ The next part of the AppleScript
 
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
+	do script "curl --silent \"http://www.bing.com/$(curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg\" | sed 's/\"url\":\"\\///g')\" > ~/Downloads/bing_image_of_the_day.jpg" in front window
 end tell
 ```
 
@@ -190,7 +190,7 @@ The final part of the AppleScript
 
 ```
 tell application "Terminal"
-	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg&pid=hp\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
+	do script "curl --silent \"http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo " & market_code & " | grep --extended-regexp --only-matching \"[a-z]{2}-[A-Z]{2}\")\" | grep --only-matching \"\\\"url\\\":\\\"\\/.*\\.jpg\" | sed 's/\"url\":\"\\/th?id=OHR\\.//g' | sed 's/\\.jpg.*//g'" in front window
 end tell
 ```
 
@@ -199,7 +199,7 @@ provides a simple check of the file name, market code and image resolution obtai
 For example, the CLI command
 
 ```
-curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo ja-JP, Japan, Japanese | grep --extended-regexp --only-matching "[a-z]{2}-[A-Z]{2}")" | grep --only-matching "\"url\":\"\/.*\.jpg&pid=hp" | sed 's/"url":"\/th?id=OHR\.//g' | sed 's/\.jpg.*//g'
+curl --silent "http://www.bing.com/HPImageArchive.aspx?format=js&uhd=1&idx=0&n=1&mkt=$(echo ja-JP, Japan, Japanese | grep --extended-regexp --only-matching "[a-z]{2}-[A-Z]{2}")" | grep --only-matching "\"url\":\"\/.*\.jpg" | sed 's/"url":"\/th?id=OHR\.//g' | sed 's/\.jpg.*//g'
 ```
 
 simply outputs
