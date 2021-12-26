@@ -14,7 +14,7 @@ where:
 * `uhd` can take the values `0` and `1`, with `0` meaning fetch the standard resolution version of the image (normally a resolution of 1920x1080) and `1` meaning fetch the ultra high definition resolution version of the image (which can vary from a minimum resolution of 1920x1080 -- for example, the image obtained in the example below is 5349×3009); 
 * `idx` is the number days previous to the present day, with `0` meaning the present day;
 * `n` is the number of images to fetch previous to the day given by `idx`, with `1` meaning fetch the one image for day `idx`; and
-* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes), and at present (November 2021) only the market codes `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `fr-CA`, `fr-FR`, `ja-JP` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
+* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes), and at present (December 2021) only the market codes `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `fr-CA`, `fr-FR`, `ja-JP` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
 
 ## Details
 
