@@ -2,7 +2,7 @@
 
 This AppleScript fetches the Bing image of the day using any choice of a valid market code and sets it as your desktop wallpaper.
 
-The AppleScript can then be added to the `Shortcuts.app` in macOS Monterey and run from the Menu Bar.
+The AppleScript may then be added to the `Shortcuts.app` in macOS and run from the Menu Bar.
 
 Using the Japanese market code `ja-JP` as an example, the direct download link for the Bing image of the day can be found from
 
