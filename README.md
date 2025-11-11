@@ -15,7 +15,7 @@ where:
 * Note that other modes are `fhd` (for pictures in full HD), `mbl` (for vertical screens like a mobile phone) and `mrk` (for pictures with the Bing logo watermark); 
 * `idx` is the number days previous to the present day, with `0` meaning the present day;
 * `n` is the number of images to fetch previous to the day given by `idx`, with `1` meaning fetch the one image for day `idx`; and
-* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/reference/market-codes), and at present (June 2025) only the market codes `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR` (sometimes), `no-NO` (sometimes), `pt-BR` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
+* `mkt` is the market code. There are currently a total of 38 market codes as listed [here](https://learn.microsoft.com/en-us/previous-versions/bing/search-apis/bing-web-search/reference/market-codes), and at present (November 2025) only the market codes `de-DE`, `en-CA`, `en-GB`, `en-IN`, `en-US`, `es-ES`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR` (sometimes), `no-NO` (sometimes), `pt-BR` and `zh-CN` have their own localised versions. Other market codes are set as being the “Rest of the World” (with the generic market code `ROW`).
 
 ## Details
 
